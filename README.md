@@ -21,3 +21,10 @@ We could make the function behave in a stationary manner by applying a logarithm
  LDA yields a strongly right-skewed distribution where most hyperparameters return moderate objective values. The distribution is non-gaussian with a long tail. A transformation that stabilizes the variance is necessary
 
  The SVM has a much sharper peak, with a long right tail. It appears as more concentranted but is still skewed.
+
+ After applying a logarithmic transformation:
+
+![Kernel Density Estimate of Log-Transformed LDA and SVM](Figures/kde_transformed.png)
+
+The logarithmic transformation significantly improves the distribution characteristics for both datasets. The LDA distribution becomes more symmetric and closer to Gaussian.
+ 

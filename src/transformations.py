@@ -2,8 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 import os
+import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from branin import branin
+from kernel_dnsty_est import plot_kde
 
 def log_transform(x):
     return np.log(x)
@@ -62,3 +64,15 @@ print("std of local vars (log):", v_log.std())
 #print("std of local vars (sqrt):", v_sqrt.std())
 print("std of local vars (inverse):", v_inverse.std())
 
+lda = pd.read_csv('data/lda.csv', header=None)
+svm = pd.read_csv('data/svm.csv', header=None)
+
+lda_y = np.log(lda[3].to_numpy())
+svm_y = np.log(svm[3].to_numpy())
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+plot_kde(lda_y, axes[0], "Log(LDA)")
+plot_kde(svm_y, axes[1], "Log(SVM)")
+plt.savefig('Figures/kde_transformed.png', dpi=150, bbox_inches='tight')
+plt.tight_layout()
+plt.show()
